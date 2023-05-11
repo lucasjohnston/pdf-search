@@ -33,7 +33,6 @@ class Viewer extends Component {
           phraseSearch: true,
           caseSensitive: false,
           highlightAll: true,
-          phraseSearch: true,
         })
         this.setState({
           scale: this._pdfViewer.currentScale * 1.4,
@@ -71,7 +70,6 @@ class Viewer extends Component {
         phraseSearch: true,
         caseSensitive: false,
         highlightAll: true,
-        phraseSearch: true,
       })
     }
   }
