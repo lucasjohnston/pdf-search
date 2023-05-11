@@ -9,4 +9,4 @@ yarn install
 yarn start
 ```
 
-Browser will be opening at http://localhost:3000/
+Test by going to http://localhost:3000?url=test.pdf
