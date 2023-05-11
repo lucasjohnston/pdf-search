@@ -4,12 +4,7 @@ import PropTypes from 'prop-types'
 import { PDFJS as PDFJSViewer } from 'pdfjs-dist/web/pdf_viewer.js'
 import './Viewer.css'
 import 'pdfjs-dist/web/pdf_viewer.css'
-import { OpenAIApi, Configuration } from 'openai'
-
-const configuration = new Configuration({
-  apiKey: process.env.REACT_APP_OAI,
-})
-const openai = new OpenAIApi(configuration)
+import axios from 'axios'
 
 class Viewer extends Component {
   constructor(props) {
@@ -83,18 +78,33 @@ class Viewer extends Component {
     })
 
     // Normalize searching
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: `Please extract the first sentence from the following searching. Remove any document formatting like section numbers (e.g. \"1.3.5\") and footnotes (e.g. \"footnote 21\"). However, the sentence you generate must still be contained within the input searching – do not manipulate the output. You must only output a single sentence.\n\nInput: 4.2.9 According to the same report, ‘There are approximately 20 officially recognised Christian churches in Iran.’[footnote 46]\n\n4.2.10 The USSD IRF Report 2021 noted that Christians were among the 3 largest non-Muslim minorities, alongside Baha’is and Yarsanis.’[footnote 47]\n\n4.2.11 The 2016 Iran census identified 130,158 Christians[footnote 48], which, according to UN data, comprised of 69,075 males and 61,083 females.\n\nOutput: According to the same report, ‘There are approximately 20 officially recognised Christian churches in Iran.\n\nInput: ${str}\n\nOutput:`,
-      temperature: 0,
-      max_tokens: 500,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
-    })
+    const response = await axios
+      .post(
+        'https://api.openai.com/v1/completions',
+        {
+          model: 'text-davinci-003',
+          prompt: `Please extract the first sentence from the following searching. Remove any document formatting like section numbers (e.g. \"1.3.5\") and footnotes (e.g. \"footnote 21\"). However, the sentence you generate must still be contained within the input searching – do not manipulate the output. You must only output a single sentence.\n\nInput: 4.2.9 According to the same report, ‘There are approximately 20 officially recognised Christian churches in Iran.’[footnote 46]\n\n4.2.10 The USSD IRF Report 2021 noted that Christians were among the 3 largest non-Muslim minorities, alongside Baha’is and Yarsanis.’[footnote 47]\n\n4.2.11 The 2016 Iran census identified 130,158 Christians[footnote 48], which, according to UN data, comprised of 69,075 males and 61,083 females.\n\nOutput: According to the same report, ‘There are approximately 20 officially recognised Christian churches in Iran.\n\nInput: ${str}\n\nOutput:`,
+          temperature: 0,
+          max_tokens: 500,
+          top_p: 1,
+          frequency_penalty: 0,
+          presence_penalty: 0,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_OAI}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .catch(error => {
+        console.error('Error:', error.message)
+        return null
+      })
+    console.log(JSON.stringify(response.data))
 
     let search = ''
-    if (response.data.choices[0].text != null) {
+    if (response != null && response.data.choices[0].text != null) {
       // Remove char from start if exists
       search = response.data.choices[0].text
       if (

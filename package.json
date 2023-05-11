@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": false,
   "dependencies": {
-    "openai": "^3.2.1",
+    "axios": "^1.4.0",
     "pdfjs-dist": "^1.8.432",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
