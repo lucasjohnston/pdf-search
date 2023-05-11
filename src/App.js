@@ -7,7 +7,17 @@ import pdfjsLib from 'pdfjs-dist/webpack'
 
 class App extends Component {
   componentDidMount() {
-    let loadingTask = pdfjsLib.getDocument(this.props.url)
+    let loadingTask
+    if (this.props.url.includes('http')) {
+      loadingTask = pdfjsLib.getDocument({
+        url: `https://proxy.cors.sh/${this.props.url}`,
+        httpHeaders: {
+          'x-cors-api-key': process.env.REACT_APP_CORSH,
+        },
+      })
+    } else {
+      loadingTask = pdfjsLib.getDocument(this.props.url)
+    }
     loadingTask.promise.then(
       doc => {
         console.log(`Document ${this.props.url} loaded ${doc.numPages} page(s)`)
