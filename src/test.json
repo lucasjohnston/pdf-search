@@ -1,0 +1,51 @@
+{
+  "data": {
+    "id": "cmpl-7F05ByM4g9CunUHnvAcrAQt4sMZ5S",
+    "object": "text_completion",
+    "created": 1683809593,
+    "model": "text-davinci-003",
+    "choices": [
+      {
+        "text": " A%202018%20report%20by%20MRG%2C%20Ceasefire%20Centre%20for%20Civilian%20Rights%20and%20Centre%20for%20Supporters%20of%20Human%20Rights%20%28CSHR%29%20noted%20that%20Armenians%20were%20the%20largest%20Christian%20group.",
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 630,
+      "completion_tokens": 97,
+      "total_tokens": 727
+    }
+  },
+  "status": 200,
+  "statusText": "",
+  "headers": {
+    "cache-control": "no-cache, must-revalidate",
+    "content-type": "application/json"
+  },
+  "config": {
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false
+    },
+    "transformRequest": [null],
+    "transformResponse": [null],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "User-Agent": "OpenAI/NodeJS/3.2.1",
+      "Authorization": "Bearer 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"
+    },
+    "method": "post",
+    "data": "{\"model\":\"text-davinci-003\",\"prompt\":\"Please extract the first sentence from the URL encoded string. Remove any document formatting like section numbers (e.g. \\\"1.3.5\\\") and footnotes (e.g. \\\"footnote 21\\\"). However, the URL encoded string you generate must still be contained within the input string – do not manipulate the output. You must only output a single url encoded sentence with no spaces.\\n\\nInput: 4.2.9%20According%20to%20the%20same%20report,%20%E2%80%98There%20are%20approximately%2020%20officially%20recognised%20Christian%20churches%20in%20Iran.%E2%80%99%5Bfootnote%2046%5D%0A%0A4.2.10%20The%20USSD%20IRF%20Report%202021%20noted%20that%20Christians%20were%20among%20the%203%20largest%20non-Muslim%20minorities,%20alongside%20Baha%E2%80%99is%20and%20Yarsanis.%E2%80%99%5Bfootnote%2047%5D%0A%0A4.2.11%20The%202016%20Iran%20census%20identified%20130,158%20Christians%5Bfootnote%2048%5D,%20which,%20according%20to%20UN%20data,%20comprised%20of%2069,075%20males%20and%2061,083%20females.\\n\\nOutput: According%20to%20the%20same%20report,%20%E2%80%98There%20are%20approximately%2020%20officially%20recognised%20Christian%20churches%20in%20Iran.\\n\\nInput: %28See%20Christian%20converts%29%0A%0A4.2.4%20A%202018%20report%20by%20MRG%2C%20Ceasefire%20Centre%20for%20Civilian%20Rights%20and%20Centre%20for%20Supporters%20of%20Human%20Rights%20%28CSHR%29%20noted%20that%20Armenians%20were%20the%20largest%20Christian%20group%2C%20and%20that%20the%20cities%20of%20Tehran%20and%20Isfahan%20were%20home%20to%20%E2%80%98substantial%E2%80%99%20Christian%20populations%5Bfootnote%2039%5D.\\n\\nOutput:\",\"temperature\":0,\"max_tokens\":500,\"top_p\":1,\"frequency_penalty\":0,\"presence_penalty\":0}",
+    "url": "https://api.openai.com/v1/completions"
+  },
+  "request": {}
+}

@@ -4,7 +4,7 @@ credit to yurydelendik/pdfjs-react for the base code
 
 ## Running
 
-Make sure to replace your cors.sh creds in .env
+Make sure to replace your creds in .env
 No it's not secure, but it's a quick and dirty way to get around CORS issues and I've only built this for a hackathon (sorry).
 
 ```
