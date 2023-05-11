@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { PDFJS as PDFJSViewer } from 'pdfjs-dist/web/pdf_viewer.js'
 import './Viewer.css'
 import 'pdfjs-dist/web/pdf_viewer.css'
-import axios from 'axios'
 
 class Viewer extends Component {
   constructor(props) {
