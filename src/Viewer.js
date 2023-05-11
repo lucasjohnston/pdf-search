@@ -19,6 +19,7 @@ class Viewer extends Component {
       doc: null,
       scale: undefined,
       search: null,
+      isLoading: true,
     }
   }
   initEventBus() {
@@ -77,6 +78,9 @@ class Viewer extends Component {
     if (str == null || str === '') {
       return
     }
+    this.setState({
+      isLoading: true,
+    })
 
     // Normalize searching
     const response = await openai.createCompletion({
@@ -119,6 +123,9 @@ class Viewer extends Component {
 
       console.log('OPENAI: ' + search)
     }
+    this.setState({
+      isLoading: false,
+    })
 
     // Retry search
     this._findController.executeCommand('find', {
@@ -137,6 +144,11 @@ class Viewer extends Component {
     return (
       <div className="Viewer">
         <div className="pdfViewer"></div>
+        {this.state.isLoading != null && this.state.isLoading === true && (
+          <div className="loader">
+            <div className="loader-bar"></div>
+          </div>
+        )}
       </div>
     )
   }
