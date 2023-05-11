@@ -77,7 +77,7 @@ class Viewer extends Component {
     })
 
     // Normalize searching
-    fetch('https://api.openai.com/v1/completions', {
+    const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_OAI}`,
@@ -104,9 +104,9 @@ class Viewer extends Component {
       })
 
     let search = ''
-    if (response != null && response.data.choices[0].text != null) {
+    if (response != null && response.choices[0].text != null) {
       // Remove char from start if exists
-      search = response.data.choices[0].text
+      search = response.choices[0].text
       if (
         search[0] === '\n' ||
         search[0] === '\r' ||
